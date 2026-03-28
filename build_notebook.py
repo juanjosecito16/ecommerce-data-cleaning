@@ -1,0 +1,561 @@
+"""
+build_notebook.py
+=================
+Generates portfolio.ipynb programmatically.
+Run: python build_notebook.py
+"""
+
+import json
+
+def md(source):
+    return {"cell_type": "markdown", "metadata": {}, "source": source}
+
+def code(source):
+    return {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {},
+        "outputs": [],
+        "source": source,
+    }
+
+cells = []
+
+# ── Title ─────────────────────────────────────────────────────────────────────
+cells.append(md([
+    "# E-Commerce Data Cleaning\n",
+    "### Portfolio Project -- Python · Pandas · NumPy · Matplotlib\n",
+    "\n",
+    "**Goal:** Take a messy, real-world-style e-commerce dataset and produce a clean,\n",
+    "analysis-ready version while documenting every decision.\n",
+    "\n",
+    "**Problems fixed:**\n",
+    "- Duplicate rows\n",
+    "- Missing values (NaN)\n",
+    "- Inconsistent text formatting (categories, cities)\n",
+    "- Prices stored as strings (`\"$19.99\"`, `\"19,99 USD\"`)\n",
+    "- Dates in five different formats\n",
+    "- Extra whitespace\n",
+    "- Outliers in price, quantity, and rating\n",
+]))
+
+# ── Imports ───────────────────────────────────────────────────────────────────
+cells.append(md(["## 0. Imports & Setup"]))
+cells.append(code([
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "import matplotlib.ticker as mticker\n",
+    "import os\n",
+    "import random\n",
+    "from datetime import datetime, timedelta\n",
+    "\n",
+    "pd.set_option('display.max_columns', 20)\n",
+    "pd.set_option('display.width', 120)\n",
+    "plt.rcParams['figure.dpi'] = 110\n",
+    "plt.rcParams['axes.spines.top'] = False\n",
+    "plt.rcParams['axes.spines.right'] = False\n",
+    "print('Libraries ready.')",
+]))
+
+# ── Generate dirty data ───────────────────────────────────────────────────────
+cells.append(md([
+    "## 1. Generate the Dirty Dataset\n",
+    "\n",
+    "We programmatically create **200 rows** of e-commerce product data and\n",
+    "inject every data-quality problem we intend to fix.",
+]))
+cells.append(code([
+    "random.seed(42)\n",
+    "np.random.seed(42)\n",
+    "\n",
+    "CATEGORIES = [\n",
+    "    'Electronics', 'electronics', 'ELECTRONICS',\n",
+    "    'Clothing',    'clothing',    'CLOTHING',\n",
+    "    'Home & Garden', 'home & garden',\n",
+    "    'Sports',      'sports',      'SPORTS',\n",
+    "    'Books',       'books',\n",
+    "    'Toys',        'toys',        'TOYS',\n",
+    "]\n",
+    "\n",
+    "CITIES = [\n",
+    "    'New York',   'new york',   'NEW YORK',  'NY',  'New York ',\n",
+    "    'Los Angeles','los angeles','LOS ANGELES','LA', ' Los Angeles',\n",
+    "    'Chicago',    'chicago',    'CHICAGO',   'Chi',\n",
+    "    'Houston',    'houston',    'HOUSTON',\n",
+    "    'Phoenix',    'phoenix',    'PHOENIX',\n",
+    "]\n",
+    "\n",
+    "PRODUCTS = [\n",
+    "    '  Wireless Headphones  ', 'Laptop Stand', 'USB-C Hub ',\n",
+    "    ' Running Shoes', 'Yoga Mat  ', 'Coffee Maker',\n",
+    "    '  Notebook', 'Bluetooth Speaker', 'Phone Case ',\n",
+    "    ' Desk Lamp', 'Water Bottle', '  Backpack',\n",
+    "    'Smart Watch', 'Keyboard ', ' Mouse Pad', 'Monitor Stand',\n",
+    "    'T-Shirt  ', '  Jeans', 'Sneakers ', ' Jacket',\n",
+    "    'Garden Hose  ', '  Plant Pot', 'Shovel ', ' Rake',\n",
+    "    'Football', '  Basketball', 'Tennis Racket ', ' Swimming Goggles',\n",
+    "    'Python Book  ', '  Data Science Book', 'Novel ', ' Cookbook',\n",
+    "    'LEGO Set  ', '  Action Figure', 'Board Game ', ' Puzzle',\n",
+    "    'Wireless Mouse', 'Standing Desk', 'Resistance Bands ', ' Yoga Block',\n",
+    "]\n",
+    "\n",
+    "def random_date():\n",
+    "    base = datetime(2023, 1, 1) + timedelta(days=random.randint(0, 730))\n",
+    "    fmt = random.choice(['%m/%d/%Y', '%Y-%m-%d', '%d-%m-%Y',\n",
+    "                          '%B %d, %Y', '%d/%m/%Y'])\n",
+    "    return base.strftime(fmt)\n",
+    "\n",
+    "def random_price():\n",
+    "    v = round(random.uniform(5.0, 350.0), 2)\n",
+    "    fmt = random.choice(['plain', 'dollar', 'usd', 'comma', 'plain', 'plain'])\n",
+    "    if fmt == 'dollar': return f'${v}'\n",
+    "    if fmt == 'usd':    return f'{v} USD'\n",
+    "    if fmt == 'comma':  return str(v).replace('.', ',')\n",
+    "    return v\n",
+    "\n",
+    "N = 180\n",
+    "rows = []\n",
+    "for i in range(N):\n",
+    "    rows.append({\n",
+    "        'order_id':       f'ORD-{str(i+1).zfill(4)}',\n",
+    "        'product_name':   random.choice(PRODUCTS),\n",
+    "        'category':       random.choice(CATEGORIES),\n",
+    "        'price':          random_price(),\n",
+    "        'quantity':       random.randint(1, 50),\n",
+    "        'city':           random.choice(CITIES),\n",
+    "        'date_added':     random_date(),\n",
+    "        'rating':         round(random.uniform(1.0, 5.0), 1),\n",
+    "        'customer_email': f'customer{i+1}@example.com',\n",
+    "    })\n",
+    "\n",
+    "df_dirty = pd.DataFrame(rows)\n",
+    "\n",
+    "# Inject outliers\n",
+    "df_dirty.loc[5,  'price']    = 9999.99\n",
+    "df_dirty.loc[12, 'price']    = '$8500'\n",
+    "df_dirty.loc[30, 'rating']   = 15.0\n",
+    "df_dirty.loc[55, 'quantity'] = 9999\n",
+    "\n",
+    "# Inject missing values\n",
+    "missing_plan = {'product_name':8,'category':10,'price':12,\n",
+    "                'quantity':8,'city':10,'date_added':7,'rating':9}\n",
+    "for col, n in missing_plan.items():\n",
+    "    df_dirty.loc[random.sample(range(N), n), col] = np.nan\n",
+    "\n",
+    "# Inject duplicates (20 rows)\n",
+    "dupes = df_dirty.sample(20, random_state=42)\n",
+    "df_dirty = pd.concat([df_dirty, dupes], ignore_index=True)\n",
+    "df_dirty = df_dirty.sample(frac=1, random_state=42).reset_index(drop=True)\n",
+    "\n",
+    "os.makedirs('data', exist_ok=True)\n",
+    "df_dirty.to_csv('data/dirty_ecommerce.csv', index=False)\n",
+    "print(f'Dirty dataset created: {df_dirty.shape[0]} rows x {df_dirty.shape[1]} columns')",
+]))
+
+# ── Before summary ────────────────────────────────────────────────────────────
+cells.append(md([
+    "## 2. Inspect the Dirty Data\n",
+    "\n",
+    "Before touching anything, we document exactly what is broken.",
+]))
+cells.append(code([
+    "df = pd.read_csv('data/dirty_ecommerce.csv', dtype=str)\n",
+    "print(f'Shape: {df.shape}')\n",
+    "df.head(8)",
+]))
+cells.append(code([
+    "# Summary table BEFORE cleaning\n",
+    "before_summary = pd.DataFrame({\n",
+    "    'dtype':    df.dtypes.astype(str),\n",
+    "    'nulls':    df.isnull().sum(),\n",
+    "    'null_%':   (df.isnull().mean() * 100).round(1),\n",
+    "    'unique':   df.nunique(),\n",
+    "})\n",
+    "print(f'Total rows     : {len(df)}')\n",
+    "print(f'Total nulls    : {df.isnull().sum().sum()}')\n",
+    "print(f'Duplicate rows : {df.duplicated().sum()}')\n",
+    "print()\n",
+    "before_summary",
+]))
+cells.append(code([
+    "# Sample of the messy values we need to fix\n",
+    "print('--- Sample price values ---')\n",
+    "print(df['price'].dropna().sample(10, random_state=1).tolist())\n",
+    "print()\n",
+    "print('--- Sample date_added values ---')\n",
+    "print(df['date_added'].dropna().sample(10, random_state=1).tolist())\n",
+    "print()\n",
+    "print('--- Unique city values (first 15) ---')\n",
+    "print(sorted(df['city'].dropna().unique())[:15])",
+]))
+
+# ── Cleaning pipeline ─────────────────────────────────────────────────────────
+cells.append(md(["## 3. Cleaning Pipeline"]))
+
+# Step 1 - Duplicates
+cells.append(md([
+    "### Step 1 -- Remove Duplicate Rows\n",
+    "Exact duplicate rows add no information and inflate every count and average.",
+]))
+cells.append(code([
+    "n_before = len(df)\n",
+    "df = df.drop_duplicates()\n",
+    "print(f'Removed {n_before - len(df)} duplicate rows  ->  {len(df)} rows remaining')",
+]))
+
+# Step 2 - Whitespace
+cells.append(md([
+    "### Step 2 -- Strip Extra Whitespace\n",
+    "Leading/trailing spaces cause silent mismatches: `' Electronics '` ≠ `'Electronics'`.",
+]))
+cells.append(code([
+    "text_cols = ['product_name', 'category', 'city', 'customer_email']\n",
+    "for col in text_cols:\n",
+    "    df[col] = df[col].str.strip()\n",
+    "    df[col] = df[col].replace('nan', np.nan)   # fix str(NaN) artefact\n",
+    "\n",
+    "# Spot-check\n",
+    "print('product_name sample after strip:')\n",
+    "print(df['product_name'].dropna().sample(5, random_state=1).tolist())",
+]))
+
+# Step 3 - Categories
+cells.append(md([
+    "### Step 3 -- Standardise Categories\n",
+    "`'electronics'`, `'ELECTRONICS'`, `'Electronics'` -> `'Electronics'`",
+]))
+cells.append(code([
+    "df['category'] = df['category'].str.title()\n",
+    "print('Unique categories:', sorted(df['category'].dropna().unique()))",
+]))
+
+# Step 4 - Cities
+cells.append(md([
+    "### Step 4 -- Standardise City Names\n",
+    "Map abbreviations (`NY`, `LA`, `Chi`) and fix capitalisation.",
+]))
+cells.append(code([
+    "city_map = {\n",
+    "    'ny': 'New York', 'new york': 'New York',\n",
+    "    'la': 'Los Angeles', 'los angeles': 'Los Angeles',\n",
+    "    'chi': 'Chicago', 'chicago': 'Chicago',\n",
+    "    'houston': 'Houston', 'phoenix': 'Phoenix',\n",
+    "}\n",
+    "\n",
+    "def fix_city(val):\n",
+    "    if pd.isna(val): return np.nan\n",
+    "    return city_map.get(str(val).strip().lower(), str(val).strip().title())\n",
+    "\n",
+    "df['city'] = df['city'].apply(fix_city)\n",
+    "print('Unique cities:', sorted(df['city'].dropna().unique()))",
+]))
+
+# Step 5 - Price
+cells.append(md([
+    "### Step 5 -- Clean & Convert Price to Float\n",
+    "Remove `$`, strip `USD`, fix comma-as-decimal-separator, then cast to `float64`.",
+]))
+cells.append(code([
+    "def clean_price(val):\n",
+    "    if pd.isna(val) or str(val).strip().lower() == 'nan':\n",
+    "        return np.nan\n",
+    "    s = str(val).strip().replace('$', '').replace('USD', '').strip()\n",
+    "    s = s.replace(',', '.')\n",
+    "    try:\n",
+    "        return float(s)\n",
+    "    except ValueError:\n",
+    "        return np.nan\n",
+    "\n",
+    "df['price'] = df['price'].apply(clean_price)\n",
+    "print(f'Price dtype  : {df[\"price\"].dtype}')\n",
+    "print(f'Price range  : {df[\"price\"].min():.2f} - {df[\"price\"].max():.2f}')",
+]))
+
+# Step 6 - Outliers
+cells.append(md([
+    "### Step 6 -- Cap Outliers\n",
+    "- **Price & Quantity**: cap at the 99th percentile (preserves near-legitimate highs)\n",
+    "- **Rating**: clip to `[1.0, 5.0]` -- values outside that range are physically impossible",
+]))
+cells.append(code([
+    "df['quantity'] = pd.to_numeric(df['quantity'], errors='coerce')\n",
+    "df['rating']   = pd.to_numeric(df['rating'],   errors='coerce')\n",
+    "\n",
+    "price_cap    = df['price'].quantile(0.99)\n",
+    "quantity_cap = df['quantity'].quantile(0.99)\n",
+    "\n",
+    "# Save pre-cap series for the visualisation later\n",
+    "price_before_cap = df['price'].copy()\n",
+    "\n",
+    "df['price']    = df['price'].clip(upper=price_cap)\n",
+    "df['quantity'] = df['quantity'].clip(upper=quantity_cap)\n",
+    "df['rating']   = df['rating'].clip(lower=1.0, upper=5.0)\n",
+    "\n",
+    "print(f'Price capped at    : {price_cap:.2f}')\n",
+    "print(f'Quantity capped at : {quantity_cap:.0f}')\n",
+    "print(f'Rating clipped to  : [1.0, 5.0]')",
+]))
+
+# Step 7 - Dates
+cells.append(md([
+    "### Step 7 -- Parse Dates\n",
+    "`pd.to_datetime` with `errors='coerce'` converts all five date formats;\n",
+    "genuinely unparseable strings become `NaT`.",
+]))
+cells.append(code([
+    "df['date_added'] = pd.to_datetime(df['date_added'], format='mixed', dayfirst=True, errors='coerce')\n",
+    "print(f'date_added dtype : {df[\"date_added\"].dtype}')\n",
+    "print(f'NaT count        : {df[\"date_added\"].isna().sum()}')\n",
+    "df['date_added'].dropna().sample(5, random_state=1)",
+]))
+
+# Step 8 - Missing values
+cells.append(md([
+    "### Step 8 -- Handle Missing Values\n",
+    "| Column | Strategy | Reason |\n",
+    "|---|---|---|\n",
+    "| `product_name`, `date_added`, `customer_email` | Drop row | Cannot be invented |\n",
+    "| `price`, `quantity`, `rating` | Fill with **median** | Robust to remaining skew |\n",
+    "| `category`, `city` | Fill with **mode** | Most common value is a safe default |",
+]))
+cells.append(code([
+    "n_before = len(df)\n",
+    "df = df.dropna(subset=['product_name', 'date_added', 'customer_email'])\n",
+    "print(f'Rows dropped (name/date/email missing): {n_before - len(df)}')\n",
+    "\n",
+    "df['price']    = df['price'].fillna(df['price'].median())\n",
+    "df['quantity'] = df['quantity'].fillna(df['quantity'].median())\n",
+    "df['rating']   = df['rating'].fillna(df['rating'].median())\n",
+    "df['category'] = df['category'].fillna(df['category'].mode()[0])\n",
+    "df['city']     = df['city'].fillna(df['city'].mode()[0])\n",
+    "\n",
+    "print(f'Remaining nulls : {df.isnull().sum().sum()}')",
+]))
+
+# Step 9 - Data types
+cells.append(md([
+    "### Step 9 -- Fix Data Types\n",
+    "Imputation can silently turn integers into floats (`3 -> 3.0`). We fix that.",
+]))
+cells.append(code([
+    "df['quantity'] = df['quantity'].round().astype(int)\n",
+    "df['price']    = df['price'].round(2)\n",
+    "df['rating']   = df['rating'].round(1)\n",
+    "\n",
+    "print('Final dtypes:')\n",
+    "print(df.dtypes)",
+]))
+
+# ── After summary ─────────────────────────────────────────────────────────────
+cells.append(md([
+    "## 4. After-Cleaning Summary\n",
+    "\n",
+    "A side-by-side comparison of the dataset before and after.",
+]))
+cells.append(code([
+    "after_summary = pd.DataFrame({\n",
+    "    'dtype':  df.dtypes.astype(str),\n",
+    "    'nulls':  df.isnull().sum(),\n",
+    "    'null_%': (df.isnull().mean() * 100).round(1),\n",
+    "    'unique': df.nunique(),\n",
+    "})\n",
+    "\n",
+    "print(f'Total rows     : {len(df)}')\n",
+    "print(f'Total nulls    : {df.isnull().sum().sum()}')\n",
+    "print(f'Duplicate rows : {df.duplicated().sum()}')\n",
+    "print()\n",
+    "after_summary",
+]))
+cells.append(code([
+    "# Reload original dirty data for comparison metrics\n",
+    "df_orig = pd.read_csv('data/dirty_ecommerce.csv', dtype=str)\n",
+    "\n",
+    "comparison = pd.DataFrame({\n",
+    "    'Metric':  ['Row count', 'Total nulls', 'Duplicate rows'],\n",
+    "    'Before':  [len(df_orig),\n",
+    "                int(df_orig.isnull().sum().sum()),\n",
+    "                int(df_orig.duplicated().sum())],\n",
+    "    'After':   [len(df),\n",
+    "                int(df.isnull().sum().sum()),\n",
+    "                int(df.duplicated().sum())],\n",
+    "}).set_index('Metric')\n",
+    "\n",
+    "comparison['Change'] = comparison['After'] - comparison['Before']\n",
+    "comparison",
+]))
+
+# ── Visualisations ────────────────────────────────────────────────────────────
+cells.append(md([
+    "## 5. Visualisations\n",
+    "\n",
+    "Two charts that make the cleaning impact immediately visible to clients.",
+]))
+
+# Sanity-check cell so the notebook proves df is clean before charting
+cells.append(md(["### Pre-chart check: confirm `df` is fully cleaned"]))
+cells.append(code([
+    "# This cell verifies that all cleaning steps have been applied to 'df'.\n",
+    "# It must show 0 nulls and 0 duplicates before we plot.\n",
+    "print(f'Rows      : {len(df)}')\n",
+    "print(f'Nulls     : {df.isnull().sum().sum()}  <- must be 0')\n",
+    "print(f'Dupes     : {df.duplicated().sum()}  <- must be 0')\n",
+    "print(f'Price dtype   : {df[\"price\"].dtype}')\n",
+    "print(f'Date dtype    : {df[\"date_added\"].dtype}')\n",
+    "assert df.isnull().sum().sum() == 0, 'ERROR: nulls still present -- re-run cleaning cells first!'\n",
+    "assert df.duplicated().sum() == 0,  'ERROR: duplicates still present!'\n",
+    "print('\\nAll checks passed. Ready to plot.')",
+]))
+
+# Chart 1 - Null values before vs after
+cells.append(md(["### Chart 1 -- Missing Values Per Column: Before vs After"]))
+cells.append(code([
+    "df_orig_reload = pd.read_csv('data/dirty_ecommerce.csv', dtype=str)\n",
+    "\n",
+    "nulls_before = df_orig_reload.isnull().sum()\n",
+    "nulls_after  = df.isnull().sum()\n",
+    "\n",
+    "# Confirm cleaning worked before plotting\n",
+    "print('Null counts BEFORE cleaning:')\n",
+    "print(nulls_before.to_string())\n",
+    "print()\n",
+    "print('Null counts AFTER cleaning:')\n",
+    "print(nulls_after.to_string())\n",
+    "print(f'\\nTotal nulls after: {nulls_after.sum()} (should be 0)')\n",
+    "\n",
+    "cols = nulls_before.index.tolist()\n",
+    "x = np.arange(len(cols))\n",
+    "width = 0.38\n",
+    "MIN_VIS = 0.5   # minimum bar height so zero-value bars are still visible\n",
+    "\n",
+    "# Use a display array: real zeros get a tiny stub so the bar is visible\n",
+    "after_display = np.where(nulls_after.values == 0, MIN_VIS, nulls_after.values.astype(float))\n",
+    "\n",
+    "fig, ax = plt.subplots(figsize=(11, 5))\n",
+    "bars1 = ax.bar(x - width/2, nulls_before.values, width,\n",
+    "               label='Before', color='#e05c5c', alpha=0.88)\n",
+    "bars2 = ax.bar(x + width/2, after_display, width,\n",
+    "               label='After (0 nulls)',  color='#4caf7d', alpha=0.88)\n",
+    "\n",
+    "ax.set_xticks(x)\n",
+    "ax.set_xticklabels(cols, rotation=35, ha='right', fontsize=10)\n",
+    "ax.set_ylabel('Number of missing values', fontsize=11)\n",
+    "ax.set_title('Missing Values Per Column: Before vs After Cleaning',\n",
+    "             fontsize=13, fontweight='bold', pad=12)\n",
+    "ax.legend(fontsize=11)\n",
+    "ax.yaxis.set_major_locator(mticker.MaxNLocator(integer=True))\n",
+    "\n",
+    "# Labels: always show the REAL count (not the display height)\n",
+    "for bar, real_h in zip(bars1, nulls_before.values):\n",
+    "    if real_h > 0:\n",
+    "        ax.text(bar.get_x() + bar.get_width()/2, real_h + 0.2,\n",
+    "                str(int(real_h)), ha='center', va='bottom', fontsize=9, fontweight='bold')\n",
+    "\n",
+    "for bar, real_h in zip(bars2, nulls_after.values):\n",
+    "    label_y = bar.get_height() + 0.2\n",
+    "    ax.text(bar.get_x() + bar.get_width()/2, label_y,\n",
+    "            str(int(real_h)), ha='center', va='bottom',\n",
+    "            fontsize=9, fontweight='bold', color='#1a5c36')\n",
+    "\n",
+    "plt.tight_layout()\n",
+    "plt.savefig('data/chart_nulls.png', bbox_inches='tight')\n",
+    "plt.show()\n",
+    "print('Saved -> data/chart_nulls.png')",
+]))
+
+# Chart 2 - Price distribution before vs after
+cells.append(md(["### Chart 2 -- Price Distribution: Before vs After Outlier Removal"]))
+cells.append(code([
+    "# Reload dirty data to get original prices as numbers\n",
+    "df_orig2 = pd.read_csv('data/dirty_ecommerce.csv', dtype=str)\n",
+    "\n",
+    "def parse_price(val):\n",
+    "    if pd.isna(val): return np.nan\n",
+    "    s = str(val).replace('$','').replace('USD','').replace(',','.').strip()\n",
+    "    try:    return float(s)\n",
+    "    except: return np.nan\n",
+    "\n",
+    "prices_dirty = df_orig2['price'].apply(parse_price).dropna()\n",
+    "prices_clean = df['price'].dropna()\n",
+    "\n",
+    "fig, axes = plt.subplots(1, 2, figsize=(12, 5), sharey=False)\n",
+    "\n",
+    "axes[0].hist(prices_dirty, bins=30, color='#e05c5c', alpha=0.85, edgecolor='white')\n",
+    "axes[0].set_title('Price Distribution -- BEFORE', fontsize=12, fontweight='bold')\n",
+    "axes[0].set_xlabel('Price (USD)', fontsize=11)\n",
+    "axes[0].set_ylabel('Count', fontsize=11)\n",
+    "axes[0].annotate(f'Max: ${prices_dirty.max():,.0f}\\nMean: ${prices_dirty.mean():,.0f}',\n",
+    "                 xy=(0.65, 0.82), xycoords='axes fraction', fontsize=10,\n",
+    "                 bbox=dict(boxstyle='round,pad=0.3', fc='#fce8e8'))\n",
+    "\n",
+    "axes[1].hist(prices_clean, bins=30, color='#4caf7d', alpha=0.85, edgecolor='white')\n",
+    "axes[1].set_title('Price Distribution -- AFTER', fontsize=12, fontweight='bold')\n",
+    "axes[1].set_xlabel('Price (USD)', fontsize=11)\n",
+    "axes[1].set_ylabel('Count', fontsize=11)\n",
+    "axes[1].annotate(f'Max: ${prices_clean.max():,.0f}\\nMean: ${prices_clean.mean():,.0f}',\n",
+    "                 xy=(0.65, 0.82), xycoords='axes fraction', fontsize=10,\n",
+    "                 bbox=dict(boxstyle='round,pad=0.3', fc='#e8f5ee'))\n",
+    "\n",
+    "fig.suptitle('Outlier Removal Effect on Price Column',\n",
+    "             fontsize=13, fontweight='bold', y=1.01)\n",
+    "plt.tight_layout()\n",
+    "plt.savefig('data/chart_price.png', bbox_inches='tight')\n",
+    "plt.show()\n",
+    "print('Saved -> data/chart_price.png')",
+]))
+
+# ── Save outputs ──────────────────────────────────────────────────────────────
+cells.append(md(["## 6. Save Clean Outputs"]))
+cells.append(code([
+    "df.to_csv('data/clean_ecommerce.csv',    index=False)\n",
+    "df.to_excel('data/clean_ecommerce.xlsx',  index=False, engine='openpyxl')\n",
+    "\n",
+    "print('Files written:')\n",
+    "print('  data/clean_ecommerce.csv')\n",
+    "print('  data/clean_ecommerce.xlsx')\n",
+    "print()\n",
+    "print('Preview of clean data:')\n",
+    "df.head()",
+]))
+
+# ── Conclusion ────────────────────────────────────────────────────────────────
+cells.append(md([
+    "## 7. Conclusion\n",
+    "\n",
+    "| Metric | Before | After |\n",
+    "|---|---|---|\n",
+    "| Rows | 200 | ~162 |\n",
+    "| Null values | ~64 | 0 |\n",
+    "| Duplicate rows | 20 | 0 |\n",
+    "| Price dtype | mixed strings | float64 |\n",
+    "| Date dtype | mixed strings | datetime64 |\n",
+    "| City variants | 20+ | 5 canonical |\n",
+    "\n",
+    "The cleaned dataset is now ready for analysis, reporting, or loading into a database.\n",
+    "\n",
+    "---\n",
+    "*Built with Python · Pandas · NumPy · Matplotlib*",
+]))
+
+# ── Write notebook file ───────────────────────────────────────────────────────
+notebook = {
+    "cells": cells,
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3",
+        },
+        "language_info": {
+            "name": "python",
+            "version": "3.9.0",
+        },
+    },
+    "nbformat": 4,
+    "nbformat_minor": 5,
+}
+
+with open("portfolio.ipynb", "w", encoding="utf-8") as f:
+    json.dump(notebook, f, indent=1, ensure_ascii=False)
+
+print("portfolio.ipynb written successfully.")

@@ -1,0 +1,201 @@
+order_id,product_name,category,price,quantity,city,date_added,rating,customer_email
+ORD-0096,Sneakers ,sports,"247,53",5.0,LOS ANGELES,28/09/2023,3.6,customer96@example.com
+ORD-0016, Swimming Goggles,CLOTHING,161.53,47.0,LA,2024-05-27,3.0,customer16@example.com
+ORD-0031, Running Shoes,electronics,206.54,34.0,Los Angeles,28/02/2023,15.0,customer31@example.com
+ORD-0159, Yoga Block,electronics,,29.0,Chi,12/05/2024,2.8,customer159@example.com
+ORD-0129,Garden Hose  ,Toys,$65.6,35.0,chicago,27/06/2024,,customer129@example.com
+ORD-0116,T-Shirt  ,SPORTS,"220,02",42.0,NEW YORK,03/12/2023,2.5,customer116@example.com
+ORD-0070,  Data Science Book,CLOTHING,"22,35",21.0,los angeles,10-04-2024,2.4,customer70@example.com
+ORD-0171,Wireless Mouse,SPORTS,303.17,21.0,New York ,03/26/2024,2.9,customer171@example.com
+ORD-0175, Desk Lamp,electronics,160.43 USD,46.0,NEW YORK,2024-05-31,1.2,customer175@example.com
+ORD-0046,  Notebook,books,"305,9",15.0,los angeles,16-04-2024,2.2,customer46@example.com
+ORD-0067,Football,Toys,190.69,35.0,PHOENIX,"August 14, 2023",1.9,customer67@example.com
+ORD-0154, Puzzle,Books,44.64 USD,37.0,LOS ANGELES,15/03/2024,4.9,customer154@example.com
+ORD-0166,Garden Hose  ,CLOTHING,281.46,30.0,chicago,"April 01, 2023",4.4,customer166@example.com
+ORD-0079,  Jeans,TOYS,165.38,38.0,LA,2023-11-27,4.3,customer79@example.com
+ORD-0025,Shovel ,Toys,146.83,4.0,NY,"March 04, 2023",3.9,customer25@example.com
+ORD-0178,Football,sports,91.94,,New York ,12/08/2023,3.3,customer178@example.com
+ORD-0057,Monitor Stand,sports,$82.5,10.0,New York,2023-02-17,4.9,customer57@example.com
+ORD-0153,Shovel ,Clothing,,10.0,houston,08/18/2023,2.4,customer153@example.com
+ORD-0083,Coffee Maker,home & garden,"253,43",36.0,LOS ANGELES,"December 08, 2024",3.6,customer83@example.com
+ORD-0069, Yoga Block,Electronics,317.89,37.0,New York,"March 27, 2023",1.5,customer69@example.com
+ORD-0125,Sneakers ,,342.39,26.0,LA,09/01/2023,4.5,customer125@example.com
+ORD-0017,  Notebook,sports,295.38,39.0,los angeles,06-06-2023,4.1,customer17@example.com
+ORD-0149, Puzzle,Home & Garden,$153.37,27.0,Chicago,"April 09, 2024",2.7,customer149@example.com
+ORD-0094, Running Shoes,Clothing,$331.92,,los angeles,09/28/2023,1.6,customer94@example.com
+ORD-0066,Standing Desk,Electronics,300.57,25.0,houston,07-01-2023,2.2,customer66@example.com
+ORD-0061, Puzzle,SPORTS,"332,76",40.0,,12/03/2024,2.8,customer61@example.com
+ORD-0085,Standing Desk,Books,168.27,23.0,Chi,17-07-2024,2.4,customer85@example.com
+ORD-0068, Swimming Goggles,TOYS,15.01 USD,43.0,CHICAGO,"June 19, 2023",4.7,customer68@example.com
+ORD-0126, Running Shoes,TOYS,292.33 USD,50.0,LOS ANGELES,13-09-2024,1.9,customer126@example.com
+ORD-0133, Rake,Clothing,"237,82",2.0,PHOENIX,28-07-2024,4.7,customer133@example.com
+ORD-0010, Running Shoes,home & garden,,26.0,LA,2023-03-09,4.7,customer10@example.com
+ORD-0019,Monitor Stand,ELECTRONICS,"34,55",5.0,Phoenix,2023-05-09,3.6,customer19@example.com
+ORD-0056,Water Bottle,ELECTRONICS,102.91,9999.0,PHOENIX,12/10/2023,4.3,customer56@example.com
+ORD-0076,Monitor Stand,,245.53 USD,44.0,PHOENIX,04/05/2023,4.1,customer76@example.com
+ORD-0151,Coffee Maker,ELECTRONICS,154.0,48.0,chicago,14/05/2023,1.2,customer151@example.com
+ORD-0105,  Wireless Headphones  ,toys,$147.57,34.0,chicago,"September 29, 2024",3.5,customer105@example.com
+ORD-0136,  Data Science Book,Books,236.32,45.0,Phoenix,05/03/2024,,customer136@example.com
+ORD-0138,Keyboard ,toys,$158.42,24.0,NY,03-12-2024,3.2,customer138@example.com
+ORD-0165,Garden Hose  ,Toys,202.82,41.0,Chi,10/24/2023,2.6,customer165@example.com
+ORD-0077,Shovel ,Toys,233.22,33.0,Chicago,"January 13, 2023",4.3,customer77@example.com
+ORD-0080,,Sports,$309.16,49.0,,06/08/2024,3.7,customer80@example.com
+ORD-0126, Running Shoes,TOYS,292.33 USD,50.0,LOS ANGELES,13-09-2024,1.9,customer126@example.com
+ORD-0039,Keyboard ,SPORTS,75.24,17.0,HOUSTON,15-05-2024,4.6,customer39@example.com
+ORD-0025,Shovel ,Toys,146.83,4.0,NY,"March 04, 2023",3.9,customer25@example.com
+ORD-0123,Standing Desk,sports,"225,43",45.0,LA,12-04-2024,1.8,customer123@example.com
+ORD-0017,  Notebook,sports,295.38,39.0,los angeles,06-06-2023,4.1,customer17@example.com
+ORD-0030, Cookbook,clothing,$70.51,4.0,phoenix,07/09/2024,4.0,customer30@example.com
+ORD-0020, Puzzle,,96.44,28.0,los angeles,2024-07-06,3.9,customer20@example.com
+ORD-0144,Yoga Mat  ,TOYS,159.65 USD,33.0,phoenix,"April 22, 2023",3.0,customer144@example.com
+ORD-0087,  Backpack,Home & Garden,,18.0,phoenix,21/06/2024,2.1,customer87@example.com
+ORD-0115,Python Book  ,Clothing,"186,45",1.0,,2024-02-24,1.3,customer115@example.com
+ORD-0174,  Data Science Book,electronics,160.16,,los angeles,,2.9,customer174@example.com
+ORD-0006,Sneakers ,Books,9999.99,5.0,new york,2024-11-08,4.1,customer6@example.com
+ORD-0127,Smart Watch,Sports,238.83,50.0,New York ,10/05/2024,4.6,customer127@example.com
+ORD-0118,Coffee Maker,Toys,342.53,46.0,NY,2024-03-30,3.8,customer118@example.com
+ORD-0074,T-Shirt  ,Books,62.89,48.0,NY,17-06-2023,1.4,customer74@example.com
+ORD-0141, Puzzle,Home & Garden,$207.3,22.0,New York ,09/02/2024,2.1,customer141@example.com
+ORD-0099,  Basketball,Sports,"177,66",29.0,NEW YORK,09/04/2024,4.6,customer99@example.com
+ORD-0173, Running Shoes,Books,291.94,42.0,NEW YORK,21/09/2024,3.0,customer173@example.com
+ORD-0097,Smart Watch,Toys,,42.0,New York ,2023-09-30,1.3,customer97@example.com
+ORD-0170,Yoga Mat  ,CLOTHING,,32.0,Houston,31/07/2024,2.8,customer170@example.com
+ORD-0098,Water Bottle,sports,210.29,19.0,Houston,"May 08, 2023",,customer98@example.com
+ORD-0032,  Backpack,ELECTRONICS,210.29,16.0,CHICAGO,03/05/2023,2.0,customer32@example.com
+ORD-0013,Phone Case ,TOYS,$8500,8.0,New York ,2024-10-04,4.2,customer13@example.com
+ORD-0036,Yoga Mat  ,,$179.53,23.0,NEW YORK,08-09-2023,,customer36@example.com
+ORD-0120,  Action Figure,Toys,$200.25,11.0,Los Angeles,22/03/2023,4.5,customer120@example.com
+ORD-0043, Rake,electronics,$315.13,,LOS ANGELES,11/13/2024,2.4,customer43@example.com
+ORD-0119,Laptop Stand,electronics,116.91,19.0,chicago,,1.6,customer119@example.com
+ORD-0091,  Basketball,TOYS,30.56,44.0,new york,2023-06-05,4.2,customer91@example.com
+ORD-0137, Desk Lamp,Toys,"230,95",40.0,,10/14/2023,3.8,customer137@example.com
+ORD-0052,  Plant Pot,SPORTS,233.87,47.0, Los Angeles,03-06-2024,,customer52@example.com
+ORD-0128,USB-C Hub ,sports,277.07,38.0,chicago,05/15/2023,4.6,customer128@example.com
+ORD-0163, Cookbook,Toys,"65,61",35.0,LOS ANGELES,27/05/2024,4.3,customer163@example.com
+ORD-0042, Desk Lamp,electronics,,36.0,New York ,2024-03-16,,customer42@example.com
+ORD-0119,Laptop Stand,electronics,116.91,19.0,chicago,,1.6,customer119@example.com
+ORD-0114, Desk Lamp,TOYS,$337.86,33.0,,12/06/2023,4.5,customer114@example.com
+ORD-0027,Monitor Stand,ELECTRONICS,157.88,7.0,new york,29/10/2024,4.3,customer27@example.com
+ORD-0140,Resistance Bands ,Electronics,22.45 USD,16.0,New York ,2024-08-01,1.3,customer140@example.com
+ORD-0101,  Jeans,electronics,$268.27,31.0,HOUSTON,"October 29, 2024",4.7,customer101@example.com
+ORD-0112,Shovel ,SPORTS,195.41,25.0,Houston,2023-11-26,4.9,customer112@example.com
+ORD-0003,Board Game ,Toys,81.05,18.0,New York,"June 13, 2023",2.4,customer3@example.com
+ORD-0078,  Notebook,Toys,336.47,30.0,New York ,2024-03-21,3.9,customer78@example.com
+ORD-0047,,home & garden,,26.0,Chicago,10/13/2023,4.9,customer47@example.com
+ORD-0069, Yoga Block,Electronics,317.89,37.0,New York,"March 27, 2023",1.5,customer69@example.com
+ORD-0160,  Jeans,Home & Garden,265.46,,Chi,24-04-2023,3.7,customer160@example.com
+ORD-0086,  Data Science Book,Sports,$110.78,8.0,los angeles,11/20/2023,4.0,customer86@example.com
+ORD-0162,Keyboard ,sports,$331.14,49.0,LA,24-10-2023,1.5,customer162@example.com
+ORD-0037,Python Book  ,sports,216.03,34.0,New York,14/11/2024,2.2,customer37@example.com
+ORD-0094, Running Shoes,Clothing,$331.92,,los angeles,09/28/2023,1.6,customer94@example.com
+ORD-0062,Water Bottle,TOYS,$160.27,41.0,,"June 17, 2024",3.5,customer62@example.com
+ORD-0023,  Plant Pot,ELECTRONICS,182.38 USD,43.0,houston,08/08/2023,1.5,customer23@example.com
+ORD-0142, Desk Lamp,clothing,$191.37,8.0,New York,05/15/2023,2.4,customer142@example.com
+ORD-0102,  Backpack,Toys,"224,0",6.0,houston,"December 23, 2023",2.3,customer102@example.com
+ORD-0034,T-Shirt  ,Home & Garden,,16.0,LA,2024-02-10,3.7,customer34@example.com
+ORD-0012, Puzzle,Sports,"262,72",,CHICAGO,2024-01-06,5.0,customer12@example.com
+ORD-0046,  Notebook,books,"305,9",15.0,los angeles,16-04-2024,2.2,customer46@example.com
+ORD-0160,  Jeans,Home & Garden,265.46,,Chi,24-04-2023,3.7,customer160@example.com
+ORD-0007,Coffee Maker,home & garden,"303,94",18.0,Houston,12-10-2024,1.7,customer7@example.com
+ORD-0028,Coffee Maker,home & garden,"62,38",31.0,los angeles,02/15/2024,1.7,customer28@example.com
+ORD-0121, Yoga Block,home & garden,176.7,10.0,,17-04-2024,2.8,customer121@example.com
+ORD-0005,,Sports,283.46,30.0,Phoenix,"May 08, 2023",1.3,customer5@example.com
+ORD-0033,Resistance Bands ,electronics,"218,69",43.0,phoenix,01/08/2024,2.3,customer33@example.com
+ORD-0143,Monitor Stand,SPORTS,10.44 USD,4.0,New York ,07/03/2024,1.5,customer143@example.com
+ORD-0146,Novel ,books,152.06,32.0,Houston,03/17/2023,2.3,customer146@example.com
+ORD-0110,Resistance Bands ,clothing,303.09 USD,50.0,Chi,15/12/2023,2.1,customer110@example.com
+ORD-0145, Yoga Block,electronics,255.9,34.0, Los Angeles,04/14/2024,1.2,customer145@example.com
+ORD-0011,Wireless Mouse,SPORTS,"78,36",26.0,Houston,27-05-2023,1.6,customer11@example.com
+ORD-0063,  Jeans,toys,31.73 USD,16.0,LA,10-12-2023,4.6,customer63@example.com
+ORD-0113,Monitor Stand,books,"85,58",,Chicago,,2.5,customer113@example.com
+ORD-0147, Desk Lamp,ELECTRONICS,48.54,41.0,phoenix,,2.5,customer147@example.com
+ORD-0167,Monitor Stand,Toys,208.16,6.0,CHICAGO,14-11-2023,1.9,customer167@example.com
+ORD-0001,Bluetooth Speaker,Electronics,$260.83,15.0,New York ,15/04/2023,1.3,customer1@example.com
+ORD-0097,Smart Watch,Toys,,42.0,New York ,2023-09-30,1.3,customer97@example.com
+ORD-0154, Puzzle,Books,44.64 USD,37.0,LOS ANGELES,15/03/2024,4.9,customer154@example.com
+ORD-0071,Football,Sports,"264,44",17.0,NEW YORK,04/26/2024,4.0,customer71@example.com
+ORD-0124,Football,TOYS,"41,8",37.0,chicago,11-08-2024,5.0,customer124@example.com
+ORD-0065,Tennis Racket ,SPORTS,"192,2",4.0,los angeles,"March 06, 2024",,customer65@example.com
+ORD-0045,Laptop Stand,CLOTHING,259.11 USD,27.0,LOS ANGELES,2023-10-01,4.1,customer45@example.com
+ORD-0164,Shovel ,ELECTRONICS,141.99,3.0,Chi,"January 20, 2023",4.7,customer164@example.com
+ORD-0029,  Wireless Headphones  ,books,"96,5",19.0,Chi,14/12/2024,3.6,customer29@example.com
+ORD-0041,T-Shirt  ,CLOTHING,260.72,46.0,Chi,07/28/2024,1.4,customer41@example.com
+ORD-0109,,TOYS,$343.18,30.0,Phoenix,"May 29, 2023",1.8,customer109@example.com
+ORD-0156, Jacket,SPORTS,$126.1,10.0,phoenix,"November 04, 2024",1.3,customer156@example.com
+ORD-0157,Laptop Stand,ELECTRONICS,$262.41,25.0,,09-04-2024,1.6,customer157@example.com
+ORD-0026,  Notebook,,71.1,29.0,New York ,2024-03-08,2.1,customer26@example.com
+ORD-0024,Wireless Mouse,TOYS,"88,83",27.0,los angeles,04/07/2023,3.6,customer24@example.com
+ORD-0146,Novel ,books,152.06,32.0,Houston,03/17/2023,2.3,customer146@example.com
+ORD-0148,Resistance Bands ,sports,161.53,28.0,NY,12/19/2024,4.4,customer148@example.com
+ORD-0082,  Plant Pot,Sports,308.71,18.0,Phoenix,11/01/2023,4.8,customer82@example.com
+ORD-0040, Running Shoes,,,3.0,New York,2023-12-08,3.5,customer40@example.com
+ORD-0169, Desk Lamp,home & garden,40.47 USD,13.0,Los Angeles,2024-09-08,4.0,customer169@example.com
+ORD-0048,  Jeans,Books,"226,31",44.0,Phoenix,12/06/2023,1.5,customer48@example.com
+ORD-0095,  Backpack,ELECTRONICS,"59,0",29.0,PHOENIX,,1.1,customer95@example.com
+ORD-0155, Yoga Block,Electronics,215.1,45.0,LA,2023-01-30,,customer155@example.com
+ORD-0044, Puzzle,Toys,340.97,10.0,LOS ANGELES,2023-06-16,4.5,customer44@example.com
+ORD-0139,Shovel ,electronics,,8.0,Houston,2023-04-04,3.6,customer139@example.com
+ORD-0004, Desk Lamp,Home & Garden,335.24 USD,7.0,NEW YORK,01/25/2024,2.4,customer4@example.com
+ORD-0106, Running Shoes,Home & Garden,$97.13,,Houston,"December 16, 2024",1.5,customer106@example.com
+ORD-0054,  Backpack,sports,145.1,20.0, Los Angeles,"August 04, 2023",4.1,customer54@example.com
+ORD-0134, Mouse Pad,ELECTRONICS,"224,21",45.0, Los Angeles,"October 26, 2024",1.5,customer134@example.com
+ORD-0020, Puzzle,,96.44,28.0,los angeles,2024-07-06,3.9,customer20@example.com
+ORD-0179, Desk Lamp,Books,112.03,45.0,CHICAGO,13/05/2023,3.8,customer179@example.com
+ORD-0016, Swimming Goggles,CLOTHING,161.53,47.0,LA,2024-05-27,3.0,customer16@example.com
+ORD-0050,Garden Hose  ,,214.14,8.0,CHICAGO,,2.0,customer50@example.com
+ORD-0081,  Plant Pot,Electronics,175.54 USD,12.0,houston,06-08-2023,4.2,customer81@example.com
+ORD-0035, Jacket,toys,114.08,1.0,Houston,28/09/2024,5.0,customer35@example.com
+ORD-0008,Shovel ,Home & Garden,236.21,44.0,NEW YORK,2024-09-15,3.1,customer8@example.com
+ORD-0111,  Wireless Headphones  ,sports,255.49,38.0,houston,"June 02, 2023",3.2,customer111@example.com
+ORD-0092, Jacket,ELECTRONICS,347.9,36.0,Chi,12/09/2024,4.2,customer92@example.com
+ORD-0084, Cookbook,toys,278.56,19.0,LOS ANGELES,2024-02-19,2.2,customer84@example.com
+ORD-0177,  Plant Pot,electronics,277.28,22.0,NEW YORK,12/04/2023,3.2,customer177@example.com
+ORD-0043, Rake,electronics,$315.13,,LOS ANGELES,11/13/2024,2.4,customer43@example.com
+ORD-0090,Novel ,TOYS,$156.96,4.0,LA,05/04/2024,4.3,customer90@example.com
+ORD-0009,Monitor Stand,CLOTHING,164.48 USD,41.0,Phoenix,13-08-2023,4.4,customer9@example.com
+ORD-0014, Swimming Goggles,ELECTRONICS,137.74,30.0,HOUSTON,15/09/2023,4.4,customer14@example.com
+ORD-0060,  Action Figure,toys,$22.33,8.0,,"May 17, 2023",3.7,customer60@example.com
+ORD-0172,,Sports,209.04 USD,33.0,NEW YORK,"November 14, 2023",2.8,customer172@example.com
+ORD-0132,  Basketball,Electronics,96.24,30.0,chicago,19-11-2024,3.3,customer132@example.com
+ORD-0018,Board Game ,Electronics,"211,64",2.0,NY,07-01-2024,2.0,customer18@example.com
+ORD-0073,Laptop Stand,clothing,"87,3",43.0,,,2.9,customer73@example.com
+ORD-0176,Python Book  ,toys,185.8,11.0,chicago,17-01-2024,2.5,customer176@example.com
+ORD-0135,USB-C Hub ,electronics,,8.0,NY,29/08/2023,1.5,customer135@example.com
+ORD-0168,Water Bottle,ELECTRONICS,181.12,34.0,HOUSTON,18-07-2023,2.4,customer168@example.com
+ORD-0079,  Jeans,TOYS,165.38,38.0,LA,2023-11-27,4.3,customer79@example.com
+ORD-0064,Coffee Maker,clothing,"57,04",45.0,New York ,2024-12-24,1.3,customer64@example.com
+ORD-0055,,SPORTS,"165,42",44.0,los angeles,"June 07, 2024",4.2,customer55@example.com
+ORD-0108,Bluetooth Speaker,toys,331.74,10.0,houston,26/10/2023,,customer108@example.com
+ORD-0051, Swimming Goggles,Electronics,184.37,44.0,los angeles,"January 08, 2024",1.3,customer51@example.com
+ORD-0052,  Plant Pot,SPORTS,233.87,47.0, Los Angeles,03-06-2024,,customer52@example.com
+ORD-0059,Monitor Stand,clothing,231.34,49.0,NY,2024-03-11,1.7,customer59@example.com
+ORD-0049,T-Shirt  ,CLOTHING,205.3 USD,3.0,NY,"September 02, 2024",2.4,customer49@example.com
+ORD-0089,USB-C Hub ,electronics,195.91,9.0,houston,04/16/2023,3.3,customer89@example.com
+ORD-0022,Laptop Stand,home & garden,208.01,5.0,new york,08/23/2023,4.6,customer22@example.com
+ORD-0058, Yoga Block,,162.12,37.0,los angeles,"December 14, 2024",3.0,customer58@example.com
+ORD-0161,Standing Desk,TOYS,186.79 USD,3.0,LOS ANGELES,09/02/2024,1.2,customer161@example.com
+ORD-0070,  Data Science Book,CLOTHING,"22,35",21.0,los angeles,10-04-2024,2.4,customer70@example.com
+ORD-0130,Water Bottle,,"320,35",19.0,Chicago,"April 28, 2023",4.9,customer130@example.com
+ORD-0038,  Notebook,clothing,96.24,48.0,Phoenix,09-06-2023,2.1,customer38@example.com
+ORD-0158, Jacket,SPORTS,273.01,39.0,NEW YORK,2023-02-23,1.6,customer158@example.com
+ORD-0143,Monitor Stand,SPORTS,10.44 USD,4.0,New York ,07/03/2024,1.5,customer143@example.com
+ORD-0002, Swimming Goggles,electronics,$15.28,15.0,HOUSTON,09/08/2024,3.2,customer2@example.com
+ORD-0053,Garden Hose  ,books,245.54,9.0,los angeles,"March 06, 2024",3.7,customer53@example.com
+ORD-0150,  Notebook,SPORTS,152.23,17.0,chicago,"June 06, 2023",1.3,customer150@example.com
+ORD-0131,,home & garden,301.75,44.0,CHICAGO,24-07-2024,1.4,customer131@example.com
+ORD-0152, Puzzle,SPORTS,"236,15",23.0,Chi,22-02-2023,3.4,customer152@example.com
+ORD-0104, Puzzle,electronics,161.91 USD,17.0,Chicago,"April 29, 2023",4.5,customer104@example.com
+ORD-0100,Garden Hose  ,Sports,$13.92,44.0,phoenix,08/24/2024,5.0,customer100@example.com
+ORD-0117,Garden Hose  ,TOYS,305.97,40.0,NEW YORK,29-08-2023,5.0,customer117@example.com
+ORD-0088,  Notebook,,107.21 USD,12.0, Los Angeles,15/01/2023,1.5,customer88@example.com
+ORD-0075,Laptop Stand,sports,"203,65",26.0,los angeles,19/03/2023,3.8,customer75@example.com
+ORD-0122,  Wireless Headphones  ,toys,315.92,35.0,Los Angeles,"March 17, 2023",4.8,customer122@example.com
+ORD-0057,Monitor Stand,sports,$82.5,10.0,New York,2023-02-17,4.9,customer57@example.com
+ORD-0021,  Basketball,Books,156.14,29.0,NY,2023-09-11,1.3,customer21@example.com
+ORD-0114, Desk Lamp,TOYS,$337.86,33.0,,12/06/2023,4.5,customer114@example.com
+ORD-0072, Running Shoes,Books,82.36,50.0,new york,2023-02-01,1.8,customer72@example.com
+ORD-0107,Resistance Bands ,home & garden,249.88 USD,36.0,New York,"July 19, 2024",1.4,customer107@example.com
+ORD-0015,  Wireless Headphones  ,Clothing,240.19,49.0,LA,18-10-2024,1.4,customer15@example.com
+ORD-0093,,books,"160,43",20.0,phoenix,15-03-2024,3.3,customer93@example.com
+ORD-0180,Coffee Maker,sports,197.83,22.0,New York ,17/11/2024,1.4,customer180@example.com
+ORD-0103,  Notebook,CLOTHING,118.78,32.0, Los Angeles,"November 09, 2024",4.3,customer103@example.com
